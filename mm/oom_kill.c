@@ -171,6 +171,7 @@ unsigned int oom_badness(struct task_struct *p, struct mem_cgroup *mem,
 		return 0;
 	}
 
+
 	/*
 	 * The memory controller may have a limit of 0 bytes, so avoid a divide
 	 * by zero, if necessary.
@@ -443,7 +444,6 @@ static int oom_kill_task(struct task_struct *p, struct mem_cgroup *mem)
 		    !(q->flags & PF_KTHREAD)) {
 			if (q->signal->oom_score_adj == OOM_SCORE_ADJ_MIN)
 				continue;
-
 
 			task_lock(q);	/* Protect ->comm from prctl() */
 			pr_err("Kill process %d (%s) sharing same memory\n",
