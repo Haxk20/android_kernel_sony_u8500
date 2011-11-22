@@ -13,6 +13,7 @@
 
 
 
+
 static inline unsigned long COLOUR_ALIGN_DOWN(unsigned long addr,
 					      unsigned long pgoff)
 {
@@ -24,6 +25,7 @@ static inline unsigned long COLOUR_ALIGN_DOWN(unsigned long addr,
 
 	return base - off;
 }
+
 
 #define COLOUR_ALIGN(addr,pgoff)		\
 	((((addr)+SHMLBA-1)&~(SHMLBA-1)) +	\
