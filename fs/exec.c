@@ -1282,7 +1282,10 @@ static void bprm_fill_uid(struct linux_binprm *bprm)
 	bprm->cred->euid = current_euid();
 	bprm->cred->egid = current_egid();
 
-	if ((bprm->file->f_path.mnt->mnt_flags & MNT_NOSUID) || current->no_new_privs)
+
+	if (bprm->file->f_path.mnt->mnt_flags & MNT_NOSUID &&
+                current->no_new_privs)
+
 		return;
 
 	inode = bprm->file->f_path.dentry->d_inode;
