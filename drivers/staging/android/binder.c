@@ -2450,7 +2450,9 @@ retry:
 			if (put_user(death->cookie,
 				     (binder_uintptr_t __user *)ptr))
 				return -EFAULT;
-			ptr += sizeof(binder_uintptr_t);
+
+			ptr += sizeof(void *);
+
 			binder_stat_br(proc, thread, cmd);
 			binder_debug(BINDER_DEBUG_DEATH_NOTIFICATION,
 				     "%d:%d %s %016llx\n",
