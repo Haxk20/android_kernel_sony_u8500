@@ -2583,7 +2583,9 @@ static void binder_release_work(struct list_head *list)
 				binder_send_failed_reply(t, BR_DEAD_REPLY);
 			} else {
 				binder_debug(BINDER_DEBUG_DEAD_TRANSACTION,
-					"undelivered transaction %d\n",
+
+					"binder: undelivered transaction %d\n",
+
 					t->debug_id);
 				t->buffer->transaction = NULL;
 				kfree(t);
@@ -2592,7 +2594,9 @@ static void binder_release_work(struct list_head *list)
 		} break;
 		case BINDER_WORK_TRANSACTION_COMPLETE: {
 			binder_debug(BINDER_DEBUG_DEAD_TRANSACTION,
-				"undelivered TRANSACTION_COMPLETE\n");
+
+				"binder: undelivered TRANSACTION_COMPLETE\n");
+
 			kfree(w);
 			binder_stats_deleted(BINDER_STAT_TRANSACTION_COMPLETE);
 		} break;
@@ -2602,13 +2606,17 @@ static void binder_release_work(struct list_head *list)
 
 			death = container_of(w, struct binder_ref_death, work);
 			binder_debug(BINDER_DEBUG_DEAD_TRANSACTION,
-				"undelivered death notification, %016llx\n",
-				(u64)death->cookie);
+
+				"binder: undelivered death notification, %p\n",
+				death->cookie);
+
 			kfree(death);
 			binder_stats_deleted(BINDER_STAT_DEATH);
 		} break;
 		default:
-			pr_err("unexpected work type, %d, not freed\n",
+
+			pr_err("binder: unexpected work type, %d, not freed\n",
+
 			       w->type);
 			break;
 		}
@@ -3159,7 +3167,39 @@ static void binder_deferred_release(struct binder_proc *proc)
 		node = rb_entry(n, struct binder_node, rb_node);
 		nodes++;
 		rb_erase(&node->rb_node, &proc->nodes);
-		incoming_refs = binder_node_release(node, incoming_refs);
+
+		list_del_init(&node->work.entry);
+		binder_release_work(&node->async_todo);
+		if (hlist_empty(&node->refs)) {
+			kfree(node);
+			binder_stats_deleted(BINDER_STAT_NODE);
+		} else {
+			struct binder_ref *ref;
+			int death = 0;
+
+			node->proc = NULL;
+			node->local_strong_refs = 0;
+			node->local_weak_refs = 0;
+			hlist_add_head(&node->dead_node, &binder_dead_nodes);
+
+			hlist_for_each_entry(ref, pos, &node->refs, node_entry) {
+				incoming_refs++;
+				if (ref->death) {
+					death++;
+					if (list_empty(&ref->death->work.entry)) {
+						ref->death->work.type = BINDER_WORK_DEAD_BINDER;
+						list_add_tail(&ref->death->work.entry, &ref->proc->todo);
+						wake_up_interruptible(&ref->proc->wait);
+					} else
+						BUG();
+				}
+			}
+			binder_debug(BINDER_DEBUG_DEAD_BINDER,
+				     "binder: node %d now dead, "
+				     "refs %d, death %d\n", node->debug_id,
+				     incoming_refs, death);
+		}
+
 	}
 
 	outgoing_refs = 0;
@@ -3173,6 +3213,9 @@ static void binder_deferred_release(struct binder_proc *proc)
 
 	binder_release_work(&proc->todo);
 	binder_release_work(&proc->delivered_death);
+
+	buffers = 0;
+
 
 	buffers = 0;
 	while ((n = rb_first(&proc->allocated_buffers))) {
