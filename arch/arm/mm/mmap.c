@@ -115,6 +115,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 	        mm->cached_hole_size = 0;
 	}
 
+
 full_search:
 	if (do_align)
 		addr = COLOUR_ALIGN(addr, pgoff);
@@ -149,6 +150,7 @@ full_search:
 			addr = COLOUR_ALIGN(addr, pgoff);
 	}
 }
+
 
 unsigned long
 arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
@@ -277,6 +279,7 @@ void arch_pick_mmap_layout(struct mm_struct *mm)
 		mm->unmap_area = arch_unmap_area_topdown;
 	}
 }
+
 
 /*
  * You really shouldn't be using read() or write() on /dev/mem.  This
