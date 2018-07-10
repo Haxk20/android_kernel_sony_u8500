@@ -1025,7 +1025,7 @@ static struct bfq_entity *bfq_lookup_next_entity(struct bfq_sched_data *sd,
 						 struct bfq_data *bfqd)
 {
 	struct bfq_service_tree *st = sd->service_tree;
-	struct bfq_entity *entity;
+	struct bfq_entity *entity = 0;
 	int i = 0;
 
 	BUG_ON(sd->in_service_entity != NULL);
