@@ -1709,7 +1709,7 @@ static ssize_t
 cifs_iovec_read(struct file *file, const struct iovec *iov,
 		 unsigned long nr_segs, loff_t *poffset)
 {
-	int rc;
+	int rc = 0;
 	int xid;
 	ssize_t total_read;
 	unsigned int bytes_read = 0;
