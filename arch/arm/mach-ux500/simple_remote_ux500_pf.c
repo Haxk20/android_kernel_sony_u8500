@@ -582,7 +582,7 @@ static int request_button_interrupts(int enable, irq_handler_t func, void *data)
 {
 	int i;
 	int irq;
-	int err;
+	int err = 0;
 
 	if (NULL == func && enable) {
 		dev_err(loc_dat->dev,
