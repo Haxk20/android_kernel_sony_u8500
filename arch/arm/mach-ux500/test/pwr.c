@@ -510,7 +510,7 @@ static int read_raw(struct pwr_test *t)
 
 static int clk_read_par_prcmu(struct pwr_test *t)
  {
-	u32 res;
+	u32 res = 0;
 	int i;
 	bool parent_enabled = false;
 
