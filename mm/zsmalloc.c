@@ -1012,7 +1012,7 @@ cleanup:
 static struct page *find_get_zspage(struct size_class *class)
 {
 	int i;
-	struct page *page;
+	struct page *page = 0;
 
 	for (i = 0; i < _ZS_NR_FULLNESS_GROUPS; i++) {
 		page = class->fullness_list[i];
@@ -1659,7 +1659,7 @@ static int migrate_zspage(struct zs_pool *pool, struct size_class *class,
 static struct page *alloc_target_page(struct size_class *class)
 {
 	int i;
-	struct page *page;
+	struct page *page = 0;
 
 	for (i = 0; i < _ZS_NR_FULLNESS_GROUPS; i++) {
 		page = class->fullness_list[i];
