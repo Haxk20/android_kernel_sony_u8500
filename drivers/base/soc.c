@@ -27,7 +27,8 @@ ssize_t show_soc_info(struct kobject *kobj,
 
 int __init register_sysfs_soc_info(struct sysfs_soc_info *info, int nb_info)
 {
-	int i, ret;
+	int i;
+	int ret = 0;
 
 	for (i = 0; i < nb_info; i++) {
 		ret = sysfs_create_file(soc_object, &info[i].attr.attr);
