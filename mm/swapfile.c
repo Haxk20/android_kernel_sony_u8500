@@ -1981,7 +1981,7 @@ static int setup_swap_map_and_extents(struct swap_info_struct *p,
 {
 	int i;
 	unsigned int nr_good_pages;
-	int nr_extents;
+	int nr_extents = 0;
 
 	nr_good_pages = maxpages - 1;	/* omit header page */
 
