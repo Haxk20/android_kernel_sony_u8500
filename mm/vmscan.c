@@ -2259,7 +2259,7 @@ static unsigned long do_try_to_free_pages(struct zonelist *zonelist,
 	struct zoneref *z;
 	struct zone *zone;
 	unsigned long writeback_threshold;
-	bool aborted_reclaim;
+	bool aborted_reclaim = 0;
 
 	delayacct_freepages_start();
 
@@ -2564,8 +2564,8 @@ static bool sleeping_prematurely(pg_data_t *pgdat, int order, long remaining,
 static unsigned long balance_pgdat(pg_data_t *pgdat, int order,
 							int *classzone_idx)
 {
-	int all_zones_ok;
-	unsigned long balanced;
+	int all_zones_ok = 0;
+	unsigned long balanced = 0;
 	int priority;
 	int i;
 	int end_zone = 0;	/* Inclusive.  0 = ZONE_DMA */
