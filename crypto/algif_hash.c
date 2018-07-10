@@ -44,7 +44,7 @@ static int hash_sendmsg(struct kiocb *unused, struct socket *sock,
 	unsigned long iovlen;
 	struct iovec *iov;
 	long copied = 0;
-	int err;
+	int err = 0;
 
 	if (limit > sk->sk_sndbuf)
 		limit = sk->sk_sndbuf;
