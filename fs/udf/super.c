@@ -1163,7 +1163,7 @@ static int udf_load_partdesc(struct super_block *sb, sector_t block)
 {
 	struct buffer_head *bh;
 	struct partitionDesc *p;
-	struct udf_part_map *map = {0};
+	struct udf_part_map *map = 0;
 	struct udf_sb_info *sbi = UDF_SB(sb);
 	int i, type1_idx;
 	uint16_t partitionNumber;
