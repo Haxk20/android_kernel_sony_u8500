@@ -340,9 +340,9 @@ static int b2r2_blt_split_request(struct b2r2_blt_data *blt_data,
 {
 	int sstep_x, sstep_y, dstep_x, dstep_y;
 	int dstart_x, dstart_y;
-	int bstart_x, bstart_y;
+	int bstart_x = 0, bstart_y = 0;
 	int dpos_x, dpos_y;
-	int bpos_x, bpos_y;
+	int bpos_x = 0, bpos_y = 0;
 	int dso_x = 1;
 	int dso_y = 1;
 	int sf_x, sf_y;
@@ -765,7 +765,7 @@ static int b2r2_blt_blit_internal(int handle,
 		struct b2r2_blt_req *user_req,
 		bool us_req)
 {
-	int request_id;
+	int request_id = 0;
 	int i;
 	int n_instance = 0;
 	int n_blit = 0;

@@ -1556,7 +1556,7 @@ static void process_events(struct b2r2_core *core, u32 status)
 static irqreturn_t b2r2_irq_handler(int irq, void *dev_id)
 {
 	unsigned long flags;
-	struct b2r2_core *core;
+	struct b2r2_core *core = 0;
 	int i;
 	static unsigned int irq_count;
 

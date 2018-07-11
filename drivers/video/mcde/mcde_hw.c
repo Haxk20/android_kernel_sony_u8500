@@ -2982,7 +2982,7 @@ int mcde_dsi_dcs_read(struct mcde_chnl_state *chnl,
 	u8 virt_id = chnl->port.phy.dsi.virt_id;
 	u32 settings;
 	bool ok = false;
-	bool error, ack_with_err;
+	bool error = 0, ack_with_err;
 	u8 nbr_of_retries = DSI_READ_NBR_OF_RETRIES;
 
 	if (*len > MCDE_MAX_DCS_READ || chnl->port.type != MCDE_PORTTYPE_DSI)

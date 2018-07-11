@@ -1352,7 +1352,7 @@ static int hdmi_set_power_mode(struct mcde_display_device *ddev,
 	if (ddev->power_mode == MCDE_DISPLAY_PM_OFF &&
 					power_mode != MCDE_DISPLAY_PM_OFF) {
 		int cnt;
-		int get_res;
+		int get_res = 0;
 
 		/*
 		 * the regulator for analog TV out is only enabled here,
