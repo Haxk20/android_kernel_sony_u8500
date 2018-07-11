@@ -632,7 +632,7 @@ int usb_get_descriptor(struct usb_device *dev, unsigned char type,
 		       unsigned char index, void *buf, int size)
 {
 	int i;
-	int result;
+	int result = 0;
 
 	memset(buf, 0, size);	/* Make sure we parse really received data */
 
@@ -680,7 +680,7 @@ static int usb_get_string(struct usb_device *dev, unsigned short langid,
 			  unsigned char index, void *buf, int size)
 {
 	int i;
-	int result;
+	int result = 0;
 
 	for (i = 0; i < 3; ++i) {
 		/* retry on length 0 or stall; some devices are flakey */
