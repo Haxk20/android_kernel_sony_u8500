@@ -828,7 +828,7 @@ static ssize_t store_protocols(struct device *device,
 	bool enable, disable;
 	const char *tmp;
 	u64 type;
-	u64 mask;
+	u64 mask = 0;
 	int rc, i, count = 0;
 	unsigned long flags;
 	ssize_t ret;
