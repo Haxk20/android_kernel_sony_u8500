@@ -1309,7 +1309,7 @@ static int ab8500_fg_calc_cap_discharge_voltage(struct ab8500_fg *di, bool comp)
  */
 static int ab8500_fg_calc_cap_discharge_fg(struct ab8500_fg *di)
 {
-	int permille_volt, permille;
+	int permille_volt = 0, permille;
 	int diff;
 
 	dev_dbg(di->dev, "%s cap_mah %d accu_charge %d\n",
