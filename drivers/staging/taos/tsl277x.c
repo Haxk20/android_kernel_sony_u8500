@@ -681,7 +681,7 @@ static void set_pltf_settings(struct tsl2772_chip *chip)
 static int flush_regs(struct tsl2772_chip *chip)
 {
 	unsigned i;
-	int rc;
+	int rc = 0;
 	u8 reg;
 
 	dev_dbg(&chip->client->dev, "%s\n", __func__);
