@@ -760,9 +760,9 @@ int prcmu_config_clkout(u8 clkout, u8 source, u8 div)
 	int r = 0;
 	unsigned long flags;
 	u32 val;
-	u32 bits;
-	u32 mask;
-	u32 div_mask;
+	u32 bits = 0;
+	u32 mask = 0;
+	u32 div_mask = 0;
 
 	BUG_ON(clkout > 1);
 	BUG_ON(div > 63);
