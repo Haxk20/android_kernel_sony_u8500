@@ -1766,7 +1766,8 @@ static ssize_t picolcd_debug_flash_write(struct file *f, const char __user *u,
 		size_t s, loff_t *off)
 {
 	struct picolcd_data *data = f->private_data;
-	ssize_t err, ret = 0;
+	ssize_t err = 0;
+	ssize_t ret = 0;
 	int report_erase, report_write;
 
 	if (s == 0)
@@ -1800,7 +1801,11 @@ static ssize_t picolcd_debug_flash_write(struct file *f, const char __user *u,
 			break;
 	}
 	mutex_unlock(&data->mutex_flash);
-	return ret > 0 ? ret : err;
+	if (ret > 0) {
+	return ret;
+	} else {
+	return err;
+	}
 }
 
 /*
