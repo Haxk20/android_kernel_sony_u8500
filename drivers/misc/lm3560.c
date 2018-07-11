@@ -1465,7 +1465,7 @@ static struct device_attribute attributes[] = {
 static int lm3560_create_sysfs_interfaces(struct device *dev)
 {
 	int i;
-	int result;
+	int result = 0;
 
 	for (i = 0; i < ARRAY_SIZE(attributes); i++) {
 		result = device_create_file(dev, &attributes[i]);
