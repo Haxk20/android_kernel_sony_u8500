@@ -446,7 +446,7 @@ static int mmc_blk_ioctl_cmd(struct block_device *bdev,
 	struct mmc_data data = {0};
 	struct mmc_request mrq = {NULL};
 	struct scatterlist sg;
-	int err;
+	int err = 0;
 
 	/*
 	 * The caller must have CAP_SYS_RAWIO, and must be calling this on the
@@ -784,7 +784,7 @@ static int mmc_blk_cmd_recovery(struct mmc_card *card, struct request *req,
 {
 	bool prev_cmd_status_valid = true;
 	u32 status, stop_status = 0;
-	int err, retry;
+	int err = 0, retry;
 
 	if (mmc_card_removed(card))
 		return ERR_NOMEDIUM;
@@ -952,7 +952,7 @@ static int mmc_blk_issue_secdiscard_rq(struct mmc_queue *mq,
 {
 	struct mmc_blk_data *md = mq->data;
 	struct mmc_card *card = md->queue.card;
-	unsigned int from, nr, arg;
+	unsigned int from = 0, nr = 0, arg = 0;
 	int err = 0, type = MMC_BLK_SECDISCARD;
 
 	if (!(mmc_can_secure_erase_trim(card) || mmc_can_sanitize(card))) {
