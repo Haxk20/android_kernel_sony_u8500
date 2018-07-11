@@ -114,7 +114,7 @@ int cw1200_reg_write(struct cw1200_common *priv, u16 addr, const void *buf,
 
 int cw1200_data_read(struct cw1200_common *priv, void *buf, size_t buf_len)
 {
-	int ret, retry = 1;
+	int ret = 0, retry = 1;
 	BUG_ON(!priv->sbus_ops);
 	priv->sbus_ops->lock(priv->sbus_priv);
 	{
@@ -142,7 +142,7 @@ int cw1200_data_read(struct cw1200_common *priv, void *buf, size_t buf_len)
 int cw1200_data_write(struct cw1200_common *priv, const void *buf,
 			size_t buf_len)
 {
-	int ret, retry = 1;
+	int ret = 0, retry = 1;
 	BUG_ON(!priv->sbus_ops);
 	priv->sbus_ops->lock(priv->sbus_priv);
 	{

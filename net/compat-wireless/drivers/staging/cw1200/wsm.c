@@ -388,7 +388,7 @@ underflow:
 static int wsm_multi_tx_confirm(struct cw1200_common *priv,
 				struct wsm_buf *buf, int link_id)
 {
-	int ret;
+	int ret = 0;
 	int count;
 	int i;
 
