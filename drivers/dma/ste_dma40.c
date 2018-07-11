@@ -863,7 +863,7 @@ static void d40_save_restore_registers(struct d40_base *base, bool save)
 static int __d40_execute_command_phy(struct d40_chan *d40c,
 				     enum d40_command command)
 {
-	u32 status;
+	u32 status = 0;
 	int i;
 	void __iomem *active_reg;
 	int ret = 0;
