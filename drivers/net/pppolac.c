@@ -271,7 +271,7 @@ static int pppolac_connect(struct socket *sock, struct sockaddr *useraddr,
 	struct pppox_sock *po = pppox_sk(sk);
 	struct sockaddr_pppolac *addr = (struct sockaddr_pppolac *)useraddr;
 	struct socket *sock_udp = NULL;
-	struct sock *sk_udp;
+	struct sock *sk_udp = 0;
 	int error;
 
 	if (addrlen != sizeof(struct sockaddr_pppolac) ||
