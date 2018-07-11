@@ -2177,7 +2177,7 @@ static int mmc_test_seq_perf(struct mmc_test_card *test, int write,
 
 static int mmc_test_large_seq_perf(struct mmc_test_card *test, int write)
 {
-	int ret, i;
+	int ret = 0, i;
 
 	for (i = 0; i < 10; i++) {
 		ret = mmc_test_seq_perf(test, write, 10 * 1024 * 1024, 1);
