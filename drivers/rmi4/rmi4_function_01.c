@@ -814,7 +814,7 @@ static int rmi4_f01_create_sysfs_files(struct rmi4_function_device *fdev,
 				       bool create)
 {
 	int i;
-	int err;
+	int err = 0;
 
 	for (i = 0; i < ARRAY_SIZE(rmi4_f01_attrs); i++) {
 		if (create) {

@@ -1307,7 +1307,7 @@ static int rmi4_core_create_sysfs_files(struct rmi4_core_device *cdev,
 					bool create)
 {
 	int i;
-	int err;
+	int err = 0;
 
 	for (i = 0; i < ARRAY_SIZE(rmi4_core_attrs); i++) {
 		if (create) {
