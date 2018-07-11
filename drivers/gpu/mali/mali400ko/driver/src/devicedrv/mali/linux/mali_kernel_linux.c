@@ -117,7 +117,7 @@ extern struct platform_driver mali_plat_driver;
 
 static int __init mali_driver_init(void)
 {
-	int ret = 0;
+	
 
 	MALI_DEBUG_PRINT(2, ("\n"));
 	MALI_DEBUG_PRINT(2, ("Inserting Mali v%d device driver. \n",_MALI_API_VERSION));
@@ -153,15 +153,17 @@ int init_mali(void)
 	/* Error handling */
 initialize_sysfs_failed:
 	mali_terminate_subsystems();
+	return 1;
 initialize_subsystems_failed:
 	mali_osk_low_level_mem_term();
 	mali_platform_deinit();
+	return 1;
 platform_init_failed:
 	terminate_kernel_device();
+	return 1;
 initialize_kernel_device_failed:
 	_mali_dev_platform_unregister();
-platform_register_failed:
-	return ret;
+	return 1;
 }
 
 void mali_driver_exit(void)
