@@ -205,8 +205,9 @@ static void clonedev_rescale_destrect(struct compdev_rect *boundary,
 		struct compdev_rect *dst_rect,
 		enum compdev_transform transform)
 {
-	uint32_t q, r, src_width;
-	uint32_t x, y, height, width;
+	uint32_t q, r;
+	uint32_t src_width = 0;
+	uint32_t x = 0, y = 0, height = 0, width = 0;
 
 	if (transform == COMPDEV_TRANSFORM_ROT_0) {
 		x = dst_rect->x;
