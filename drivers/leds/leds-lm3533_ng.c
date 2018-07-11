@@ -859,7 +859,7 @@ static bool is_pattern_supported(struct lm3533_intf *intf)
 static int lm3533_register_ldevs(struct lm3533_data *lm)
 {
 	int i;
-	int rc;
+	int rc = 0;
 
 	for (i = 0; i < ARRAY_SIZE(lm->intf) && lm->intf[i]; i++) {
 		rc = led_classdev_register(&lm->i2c->dev, &lm->intf[i]->ldev);
@@ -904,7 +904,7 @@ static int lm3533_als_tgt_update(struct lm3533_data *lm, enum lm3533_als_id id,
 		unsigned *targets)
 {
 	unsigned i;
-	int rc;
+	int rc = 0;
 
 	for (i = 0; i < LM3533_ALS_ZONE_NUM; i++) {
 		rc = lm3533_write(lm, targets[i],
@@ -930,7 +930,7 @@ static int lm3533_ptrn_scaler_update(struct lm3533_data *lm, unsigned *sclrs)
 	};
 
 	unsigned i;
-	int rc;
+	int rc = 0;
 	u8 val;
 
 	for (i = 0; i < LM3533_SCALERS_NUM; i++) {
@@ -1175,7 +1175,7 @@ err_exit:
 
 static int lm3533_link_als(struct lm3533_data *lm, bool enable)
 {
-	int rc;
+	int rc = 0;
 	struct lm3533_bank_config *bank;
 	enum lm3533_control_bank b;
 	u8 tmp;
