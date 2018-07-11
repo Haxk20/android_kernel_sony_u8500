@@ -1949,7 +1949,7 @@ static int vidioc_set_ext_ctrls(
 		}
 	case V4L2_CID_TUNE_PREEMPHASIS:
 		{
-			u8 preemphasis;
+			u8 preemphasis = 0;
 			FM_DEBUG_REPORT("vidioc_set_ext_ctrls: "
 					"V4L2_CID_TUNE_PREEMPHASIS, "
 					"Value = %d",
