@@ -1517,7 +1517,8 @@ static int ahash_sha256_init(struct ahash_request *req)
 
 static int ahash_sha1_digest(struct ahash_request *req)
 {
-	int ret2, ret1;
+	int ret2 = 0;
+        int ret1;
 
 	ret1 = ahash_sha1_init(req);
 	if (ret1)
@@ -1532,7 +1533,8 @@ out:
 
 static int ahash_sha256_digest(struct ahash_request *req)
 {
-	int ret2, ret1;
+	int ret2 = 0;
+        int ret1;
 
 	ret1 = ahash_sha256_init(req);
 	if (ret1)
@@ -1573,7 +1575,8 @@ static int hmac_sha256_init(struct ahash_request *req)
 
 static int hmac_sha1_digest(struct ahash_request *req)
 {
-	int ret2, ret1;
+	int ret2 = 0;
+        int ret1;
 
 	ret1 = hmac_sha1_init(req);
 	if (ret1)
@@ -1588,7 +1591,8 @@ out:
 
 static int hmac_sha256_digest(struct ahash_request *req)
 {
-	int ret2, ret1;
+	int ret2 = 0;
+        int ret1;
 
 	ret1 = hmac_sha256_init(req);
 	if (ret1)
