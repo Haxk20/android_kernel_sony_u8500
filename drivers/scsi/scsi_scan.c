@@ -556,7 +556,7 @@ static int scsi_probe_lun(struct scsi_device *sdev, unsigned char *inq_result,
 	unsigned char scsi_cmd[MAX_COMMAND_SIZE];
 	int first_inquiry_len, try_inquiry_len, next_inquiry_len;
 	int response_len = 0;
-	int pass, count, result;
+	int pass, count, result = 0;
 	struct scsi_sense_hdr sshdr;
 
 	*bflags = 0;
@@ -1319,7 +1319,7 @@ static int scsi_report_lun_scan(struct scsi_target *starget, int bflags,
 	unsigned int lun;
 	unsigned int num_luns;
 	unsigned int retries;
-	int result;
+	int result = 0;
 	struct scsi_lun *lunp, *lun_data;
 	u8 *data;
 	struct scsi_sense_hdr sshdr;

@@ -1238,7 +1238,7 @@ out:
 
 static int sd_sync_cache(struct scsi_disk *sdkp)
 {
-	int retries, res;
+	int retries, res = 0;
 	struct scsi_device *sdp = sdkp->device;
 	struct scsi_sense_hdr sshdr;
 
