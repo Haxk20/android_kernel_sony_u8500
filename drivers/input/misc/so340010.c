@@ -654,7 +654,7 @@ static void so34_gpio_cb_wfunc(struct work_struct *work)
 static int so34_flush_config(struct so34_data *d)
 {
 	enum so34_rr rr;
-	int rc;
+	int rc = 0;
 
 	so34_dump(d, __func__);
 	for (rr = SO34_RR_CONFIG; rr <= SO34_RR_LED; rr++) {
@@ -971,7 +971,7 @@ static void so34_cleanup(struct so34_data *d)
 static int so34_register_ldevs(struct so34_data *d)
 {
 	int i;
-	int rc;
+	int rc = 0;
 
 	for (i = 0; i < ARRAY_SIZE(d->led) && d->led[i]; i++) {
 		rc = led_classdev_register(&d->client->dev, &d->led[i]->ldev);
