@@ -115,12 +115,7 @@ static struct notifier_block mali_pwr_notif_block =
 };
 #endif
 
-/** This function is called when platform device is unregistered. This function
- * is necessary when the platform device is unregistered.
- */
-static void _mali_release_pm(struct device *device)
-{
-}
+
 struct platform_device mali_gpu_device;
 
 /** This function is called when the device is probed */
