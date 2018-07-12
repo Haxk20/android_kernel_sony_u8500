@@ -76,7 +76,7 @@ static inline struct hlist_nulls_head *ping_hashslot(struct ping_table *table,
 int ping_get_port(struct sock *sk, unsigned short ident)
 {
 	struct hlist_nulls_node *node;
-	struct hlist_nulls_head *hlist;
+	struct hlist_nulls_head *hlist = 0;
 	struct inet_sock *isk, *isk2;
 	struct sock *sk2 = NULL;
 

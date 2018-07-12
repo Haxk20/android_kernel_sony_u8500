@@ -91,7 +91,7 @@ EXPORT_SYMBOL_GPL(inet_csk_bind_conflict);
 int inet_csk_get_port(struct sock *sk, unsigned short snum)
 {
 	struct inet_hashinfo *hashinfo = sk->sk_prot->h.hashinfo;
-	struct inet_bind_hashbucket *head;
+	struct inet_bind_hashbucket *head = 0;
 	struct hlist_node *node;
 	struct inet_bind_bucket *tb;
 	int ret, attempts = 5;
