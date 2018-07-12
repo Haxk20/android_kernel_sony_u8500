@@ -30,7 +30,7 @@
  */
 void _wordcopy_fwd_aligned (long int dstp, long int srcp, size_t len)
 {
-	op_t a0, a1;
+	op_t a0, a1 = 0;
 
 	switch (len % 8) {
 	case 2:
@@ -133,7 +133,7 @@ do0:
 
 void _wordcopy_fwd_dest_aligned (long int dstp, long int srcp, size_t len)
 {
-	op_t a0, a1, a2, a3;
+	op_t a0, a1, a2 = 0, a3 = 0;
 	int sh_1, sh_2;
 
 	/*
@@ -219,7 +219,7 @@ do0:
  */
 void _wordcopy_bwd_aligned (long int dstp, long int srcp, size_t len)
 {
-	op_t a0, a1;
+	op_t a0, a1 = 0;
 
 	switch (len % 8) {
 	case 2:
@@ -322,7 +322,7 @@ do0:
  */
 void _wordcopy_bwd_dest_aligned (long int dstp, long int srcp, size_t len)
 {
-	op_t a0, a1, a2, a3;
+	op_t a0 = 0, a1 = 0, a2, a3;
 	int sh_1, sh_2;
 
 	/*
