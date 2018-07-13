@@ -27,6 +27,9 @@ struct clk_lookup {
 struct clk_lookup *clkdev_alloc(struct clk *clk, const char *con_id,
 	const char *dev_fmt, ...);
 
+	struct clk_lookup *force_clkdev_alloc(struct clk *clk, const char *con_id,
+		const char *dev_fmt, ...);
+
 void clkdev_add(struct clk_lookup *cl);
 void clkdev_drop(struct clk_lookup *cl);
 
