@@ -83,10 +83,12 @@ static void cg2900_read_cb(struct cg2900_user_data *user, struct sk_buff *skb)
  *
  * Function initializes pf_data structure and also adds the cg2900
  * clock source.
+ *
+ * 7/14/2018 - Forced allocation for a clk.
  */
 static int __devinit cg2900_core_probe(struct platform_device *pdev)
 {
-	cg2900_clk_lookup = clkdev_alloc(&cg2900_clk, "sys_clk_out",
+	cg2900_clk_lookup = force_clkdev_alloc(&cg2900_clk, "sys_clk_out",
 			"cw1200_wlan");
 
 	if (!cg2900_clk_lookup)
