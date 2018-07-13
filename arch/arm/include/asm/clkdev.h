@@ -23,7 +23,7 @@ static inline struct clk_lookup_alloc *__clkdev_alloc(size_t size)
 
 static inline struct clk_lookup_alloc *__force_clkdev_alloc(size_t size)
 {
-	return kzalloc(size, GFP_NOFAIL);
+	return kzalloc(size, GFP_KERNEL | __GFP_NOFAIL);
 }
 
 #endif
