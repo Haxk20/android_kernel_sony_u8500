@@ -77,10 +77,18 @@ good_area:
 			}
 			BUG();
 		}
-		if (fault & VM_FAULT_MAJOR)
-			current->maj_flt++;
-		else
-			current->min_flt++;
+		if (flags & FAULT_FLAG_ALLOW_RETRY) {
+			if (fault & VM_FAULT_MAJOR)
+				current->maj_flt++;
+			else
+				current->min_flt++;
+			if (fault & VM_FAULT_RETRY) {
+				flags &= ~FAULT_FLAG_ALLOW_RETRY;
+				flags |= FAULT_FLAG_TRIED;
+
+				goto retry;
+			}
+		}
 
 		pgd = pgd_offset(mm, address);
 		pud = pud_offset(pgd, address);
@@ -111,6 +119,8 @@ out_of_memory:
 	 * (which will retry the fault, or kill us if we got oom-killed).
 	 */
 	up_read(&mm->mmap_sem);
+	if (!is_user)
+		goto out_nosemaphore;
 	pagefault_out_of_memory();
 	return 0;
 }
